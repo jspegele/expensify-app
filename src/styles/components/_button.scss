@@ -8,10 +8,10 @@
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
-  transition: background-color .3s ease;
+  transition: background-color .2s ease, color .2s ease;
 
-  &:hover {
-    background: lighten($blue, 5%);
+  &:hover:enabled {
+    background: darken($blue, 7%);
   }
 
   &:active {
@@ -22,10 +22,45 @@
   }
 }
 
-.button--link {
-  background: none;
+.button--secondary{
+  background: #888;
+
+  &:hover:enabled  {
+    background: darken(#888, 7%);
+  }
 }
 
-.button--secondary {
-  background: #888;
+.button--tertiary {
+  background: none;
+  color: $blue;
+
+  &:hover:enabled {
+    background: none;
+    color: darken($blue, 5%);
+  }
+
+  &:active {
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+  }
+}
+
+.button--tertiary-light {
+  background: none;
+  color: $off-white;
+
+  &:hover:enabled {
+    background: none;
+    color: darken($off-white, 7%);
+  }
+}
+
+.button--disabled {
+  background: lighten($grey, 50%);
+  color: $grey;
+
+  &:hover:enabled {
+    background: lighten($grey, 43%);
+  }
 }

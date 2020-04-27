@@ -1,9 +1,11 @@
 .text-input {
   border: 1px solid #cacccd;
+  flex-grow: 1;
   font-size: $font-size-large;
   font-weight: 300;
   height: 50px;
   padding: $s-size;
+  width: 100%;
 }
 
 .select {
@@ -13,4 +15,20 @@
 .textarea {
   @extend .text-input;
   height: 10rem;
+}
+
+.tag-input-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .save-tags {
+    color: $grey;
+    margin-left: $m-size;
+
+    &.save-tags--active {
+      color: $blue;
+      cursor: pointer;
+    }
+  }
 }

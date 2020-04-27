@@ -12,6 +12,9 @@ export class EditExpensePage extends React.Component {
     this.props.startRemoveExpense({ id: this.props.expense.id });
     this.props.history.push('/');
   };
+  handleAddTags = (expense) => {
+    this.props.startEditExpense(this.props.expense.id, expense);
+  }
   render() {
     return (
       <div>
@@ -23,6 +26,7 @@ export class EditExpensePage extends React.Component {
         <div className="content-container">
           <ExpenseForm
             expense={this.props.expense}
+            handleAddTags={this.handleAddTags}
             onSubmit={this.onSubmit}
           />
           <button className="button button--secondary" onClick={this.onRemove}>Remove Expense</button>

@@ -1,0 +1,57 @@
+// React Modal
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+// Custom Modal
+.modal {
+  background-color: #fff;
+  box-shadow: 0 0 10px 5px lighten($grey, 35%);
+  max-height: 80vh;
+  max-width: 40rem;
+  outline: none;
+  overflow-y: auto;
+  padding: $l-size;
+}
+
+.modal__title {
+  margin: 0 0 $m-size 0;
+}
+
+.modal__body {
+  font-size: 1.4rem;
+  margin-bottom: $l-size;
+  max-height: 1000px;
+  transition: max-height .2s ease;
+
+  p {
+    margin:0 0 $s-size 0;
+  }
+
+  ul {
+    margin:0 0 $s-size 0;
+    padding-left: 1.8rem;
+  }
+}
+
+.modal__body--hidden {
+  margin-bottom: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .1s ease;
+}

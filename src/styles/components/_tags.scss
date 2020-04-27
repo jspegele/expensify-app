@@ -1,0 +1,41 @@
+.form__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: $xl-size;
+  padding: 0 $s-size;
+}
+
+.form__tag {
+  align-items: center;
+  background: none;
+  border: 2px solid $grey;
+  border-radius: 8px;
+  color: $grey;
+  cursor: pointer;
+  display: flex;
+  font-size: $font-size-small;
+  font-weight: 300;
+  justify-content: center;
+  margin: 0 $s-size $s-size 0;
+  outline: none;
+  padding: .3rem .6rem .3rem 1.2rem;
+
+  > * {
+    pointer-events: none;
+  }
+  
+  &:hover {
+    border-color: $dark-red;
+    color: $dark-red;
+
+    svg {
+      color: $dark-red;
+    }
+  }
+
+  svg {
+    margin-left: 1rem;
+
+  }
+}
