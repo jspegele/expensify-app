@@ -10,36 +10,44 @@ class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      type: (props.expense && props.expense.type) ? props.expense.type : 'expense',
       description: props.expense ? props.expense.description : '',
       amount: props.expense ? (props.expense.amount / 100).toString() : '',
       note: props.expense ? props.expense.note : '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       newTags: '',
-      savedTags: props.expense ? (props.expense.tags ? props.expense.tags : '') : '',
+      savedTags: props.expense ? props.expense.tags : '',
       calendarFocused: false,
       modalOpen: false,
       edited: false,
       error: ''
     };
   }
+  onTypeChange = (e) => {
+    const type = e.target.value;
+    this.setState(() => ({ type }));
+    if (this.state.description && this.state.amount) { this.setState(() => ({ edited: true })); }
+  };
   onDescriptionChange = (e) => {
     const description = e.target.value;
-    this.setState(() => ({ description, edited: true }));
+    this.setState(() => ({ description }));
+    if (this.state.description && this.state.amount) { this.setState(() => ({ edited: true })); }
   };
   onAmountChange = (e) => {
     const amount = e.target.value;
     
-    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-      this.setState(() => ({ amount, edited: true }));
-    }
+    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) { this.setState(() => ({ amount })); }
+    if (this.state.description && this.state.amount) { this.setState(() => ({ edited: true })); }
   };
   onNoteChange = (e) => {
     const note = e.target.value;
-    this.setState(() => ({ note, edited: true }));
+    this.setState(() => ({ note }));
+    if (this.state.description && this.state.amount) { this.setState(() => ({ edited: true })); }
   };
   onDateChange = (createdAt) => {
     if(createdAt) {
-      this.setState(() => ({ createdAt, edited: true }));
+      this.setState(() => ({ createdAt }));
+      if (this.state.description && this.state.amount) { this.setState(() => ({ edited: true })); }
     }
   };
   onFocusChange = ({ focused }) => {
@@ -53,9 +61,9 @@ class ExpenseForm extends React.Component {
       } else if (newTags.indexOf('  ') === -1) {
         this.setState(() => ({
           newTags,
-          error: '',
-          edited: true
+          error: ''
         }));
+        if (this.state.description && this.state.amount) { this.setState(() => ({ edited: true })); }
       }
     } else {
       this.setState(() => ({ error: 'Invalid character in tags. Please use only letters and numbers.' }));
@@ -84,6 +92,7 @@ class ExpenseForm extends React.Component {
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
+        type: this.state.type,
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
         note: this.state.note,
@@ -98,22 +107,35 @@ class ExpenseForm extends React.Component {
     return (
       <div>
         <form className="form" onSubmit={this.onSubmit}>
+          <label htmlFor="transaction-input">Type</label>
+          <div className="input-group input-group--radio" id="transaction-input">
+            <label className="label--radio">
+              <input type="radio" name="transaction-type" value="expense" onChange={this.onTypeChange} checked={this.state.type === 'expense'} /> Expense
+            </label>
+            <label className="label--radio">
+              <input type="radio" name="transaction-type" value="income" onChange={this.onTypeChange} checked={this.state.type === 'income'} /> Income
+            </label>
+          </div>
+          <label htmlFor="description-input">Description</label>
           <input
             className="text-input"
+            id="description-input"
             type="text"
-            placeholder="Description"
             autoFocus
             value={this.state.description}
             onChange={this.onDescriptionChange}
           />
+          <label htmlFor="amount-input">Amount</label>
           <input
             className="text-input"
+            id="amount-input"
             type="text"
-            placeholder="Amount"
             value={this.state.amount}
             onChange={this.onAmountChange}
           />
+          <label htmlFor="date-input">Date</label>
           <SingleDatePicker
+            id="date-input"
             date={this.state.createdAt}
             onDateChange={this.onDateChange}
             focused={this.state.calendarFocused}
@@ -121,16 +143,20 @@ class ExpenseForm extends React.Component {
             numberOfMonths={1}
             isOutsideRange={() => false}
           />
+          <label htmlFor="note-input">Note</label>
           <textarea
             className="textarea"
+            id="note-input"
             placeholder="Add a note for your expense (optional)"
             value={this.state.note}
             onChange={this.onNoteChange}
           >
           </textarea>
-          <div className="tag-input-wrapper">
+          <label htmlFor="tags-input">Tags</label>
+          <div className="input-group input-group--tags">
             <input
               className="text-input"
+              id="tags-input"
               type="text"
               placeholder="Add tags separated by commas (ex: travel, hawaii, hotel)"
               value={this.state.newTags}
@@ -144,7 +170,7 @@ class ExpenseForm extends React.Component {
           { this.props.expense && <TagList expense={this.props.expense} handleRemoveTag={this.handleRemoveTag} />}
           { this.state.error && <p className="form__error">{this.state.error}</p>}
           <div>
-            <button className={saveButtonClass} type="submit">Save Expense</button>
+            <button className={saveButtonClass} type="submit">Save Transaction</button>
           </div>
         </form>
       </div>

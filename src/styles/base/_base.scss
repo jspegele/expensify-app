@@ -11,6 +11,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
   line-height: 1.6;
+  padding-bottom: $l-size;
 }
 
 button {
@@ -23,4 +24,12 @@ button:disabled {
 
 .is-active {
   font-weight: bold;
+}
+
+.green-text {
+  color: $dark-green;
+}
+
+.red-text {
+  color: $dark-red;
 }

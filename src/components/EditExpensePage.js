@@ -20,7 +20,7 @@ export class EditExpensePage extends React.Component {
       <div>
         <div className="page-header">
           <div className="content-container">
-            <h2 className="page-header__title">Edit Expense</h2>
+            <h2 className="page-header__title">Edit Transaction</h2>
           </div>
         </div>
         <div className="content-container">
@@ -29,7 +29,7 @@ export class EditExpensePage extends React.Component {
             handleAddTags={this.handleAddTags}
             onSubmit={this.onSubmit}
           />
-          <button className="button button--secondary" onClick={this.onRemove}>Remove Expense</button>
+          <button className="button button--secondary" onClick={this.onRemove}>Remove Transaction</button>
         </div>
       </div>
 

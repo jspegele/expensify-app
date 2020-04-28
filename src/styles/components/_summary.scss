@@ -1,0 +1,30 @@
+.view-summary {
+  margin-bottom: $m-size;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $desktop-breakpoint) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.view-summary__title {
+  font-size: $font-size-large;
+  font-weight: 400;
+  margin: 0;
+
+  span.bold {
+    font-weight: 700;
+  }
+}
+
+.view-summary__actions {
+  margin-top: $m-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    margin-top: 0;
+    margin-left: $m-size;
+  }
+}

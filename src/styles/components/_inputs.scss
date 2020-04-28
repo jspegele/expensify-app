@@ -8,6 +8,11 @@
   width: 100%;
 }
 
+.text-input--small {
+  height: 30px;
+  padding: .6rem;
+}
+
 .select {
   @extend .text-input; 
 }
@@ -17,18 +22,23 @@
   height: 10rem;
 }
 
-.tag-input-wrapper {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+label {
+  color: lighten($grey, 10%);
+  font-size: $font-size-small;
+}
 
-  .save-tags {
-    color: $grey;
-    margin-left: $m-size;
+.label--radio {
+  color: $dark-grey;
+  font-size: $font-size-large;
+  margin-right: $l-size;
+}
 
-    &.save-tags--active {
-      color: $blue;
-      cursor: pointer;
-    }
+.save-tags {
+  color: $grey;
+  margin-left: $m-size;
+
+  &.save-tags--active {
+    color: $blue;
+    cursor: pointer;
   }
 }

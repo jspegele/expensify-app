@@ -4,6 +4,21 @@
   padding-bottom: $l-size;
 }
 
+.input-group--radio {
+  padding: 0;
+
+  > * {
+    flex-shrink: 0;
+  }
+}
+
+.input-group--tags {
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+}
+
 @media (min-width: $desktop-breakpoint) {
   .input-group {
     flex-direction: row;
