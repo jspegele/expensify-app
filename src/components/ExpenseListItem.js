@@ -14,22 +14,19 @@ const ExpenseListItem = ({ dispatch, id, type, description, amount, createdAt, t
   }
   return (
     <Link className="list-item" to={`/edit/${id}`}>
-      <div className="list-item__description">
-        <h3 className="list-item__title">{description}</h3>
-        <div><span className="list-item__subtitle">{moment(createdAt).format('MMMM Do, YYYY')}</span></div>
-      </div>
-      <div className="list-item__details">
-        <h3 className={amountClass}>{amountFormatted}</h3>
-        <div className="list-item__tags">
-        {
-          tags.split(',').map((tag, i) => (
-            <span className="list-item__tag" id={tag} key={tag}>
-              {i > 0 && <FaCircle size=".5rem" />}
-              {tag}
-            </span>
-          ))
-        }
-        </div>
+      <div className="list-item__title">{description}</div>
+      <div className="list-item__date show-for-mobile">{moment(createdAt).format('MMM D')}</div>
+      <div className="list-item__date show-for-desktop">{moment(createdAt).format('MMMM D YYYY')}</div>
+      <div className={amountClass}>{amountFormatted}</div>
+      <div className="list-item__tags">
+      {
+        tags.split(',').map((tag, i) => (
+          <span className="list-item__tag" id={tag} key={tag}>
+            {i > 0 && <FaCircle size=".5rem" />}
+            {tag}
+          </span>
+        ))
+      }
       </div>
     </Link>
   );

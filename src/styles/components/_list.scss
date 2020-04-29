@@ -9,7 +9,6 @@
 
 .list-body {
   margin-bottom: $m-size;
-
   @media (min-width: $desktop-breakpoint) {
     margin-bottom: $l-size;
   }
@@ -29,43 +28,61 @@
   border: 1px solid darken($off-white, 7%);
   border-top: none;
   color: $dark-grey;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-gap: .3rem $s-size;
+  grid-template-columns: 3rem auto auto;
+  grid-template-rows: auto auto;
   padding: $s-size;
   text-decoration: none;
   transition: background .3s ease;
-
   &:hover {
     background: $off-white;
   }
   @media (min-width: $desktop-breakpoint) {
-    align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: $m-size;
+    grid-template-columns: 7rem auto auto;
   }
 }
 
-.list-item__description {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
 .list-item__title {
-  margin: 0;
+  font-size: $font-size-medium;
+  font-weight: 600;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  line-height: 1.3;
   word-break: break-all;
 }
 
+.list-item__date {
+  align-self: center;
+  color: $grey;
+  font-size: $font-size-small;
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  line-height: 1.8;
+  padding-right: 1rem;
+  text-align: center;
+}
+
+.list-item__amount {
+  align-self: center;
+  font-size: $font-size-medium;
+  font-weight: 600;
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+  text-align: right;
+}
+
 .list-item__tags {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
   color: $grey;
   display: flex;
+  flex-wrap: wrap;
   font-size: $font-size-small;
   justify-content: flex-start;
-
   .list-item__tag {
     display: block;
+    flex-shrink: 0;
     margin-right: .6rem;
 
     svg {
@@ -73,29 +90,4 @@
       margin: 0 .6rem .1rem 0;
     }
   }
-}
-
-.list-item__details {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  @media (min-width: $desktop-breakpoint) {
-    align-items: flex-end;
-  }
-}
-
-.list-item__amount {
-  margin: $s-size 0 0 0;
-
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0;
-    padding-left: $s-size;
-  }
-}
-
-.list-item__subtitle {
-  color: $grey;
-  font-size: $font-size-small;
 }
