@@ -19,9 +19,17 @@
 }
 
 // Custom Modal
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.30);}
+
 .modal {
   background-color: #fff;
-  box-shadow: 0 0 10px 5px lighten($grey, 35%);
+  box-shadow: 0 0 10px 5px lighten($grey, 15%);
   max-height: 80vh;
   max-width: 40rem;
   outline: none;
@@ -54,4 +62,13 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height .1s ease;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin-left: $m-size;
+  }
 }

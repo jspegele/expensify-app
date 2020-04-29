@@ -6,6 +6,7 @@
   font-size: $font-size-large;
   font-weight: 300;
   line-height: 1;
+  outline: none;
   padding: $s-size;
   text-decoration: none;
   transition: background-color .2s ease, color .2s ease;
@@ -18,7 +19,6 @@
     -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
        -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
             box-shadow: inset 0px 0px 5px #c1c1c1;
-    outline: none;
   }
 }
 
@@ -32,11 +32,11 @@
 
 .button--tertiary {
   background: none;
-  color: $blue;
+  color: $grey;
 
   &:hover:enabled {
     background: none;
-    color: darken($blue, 5%);
+    color: darken($grey, 5%);
   }
 
   &:active {
@@ -62,5 +62,13 @@
 
   &:hover:enabled {
     background: lighten($grey, 43%);
+  }
+}
+
+.button--destructive {
+  background: $dark-red;
+
+  &:hover:enabled {
+    background: darken($dark-red, 5%);
   }
 }

@@ -5,15 +5,14 @@ import numeral from 'numeral';
 import selectExpenses from '../selectors/expenses';
 import selectExpensesTotal from '../selectors/expenses-total';
 
-export const CurrentViewSummary = ({ expensesTotal }) => {
-  const budgetWord = expensesTotal === 0 ? 'on target' : ( expensesTotal > 0 ? 'under spending' : 'over spending');
-  const formattedExpensesTotal = numeral(expensesTotal / 100).format('$0,0.00');
-  const totalClass = expensesTotal > 0 ? 'green-text' : 'red-text';
+export const CurrentViewSummary = ({ visibleExpensesTotal }) => {
+  const formattedExpensesTotal = numeral(visibleExpensesTotal / 100).format('$0,0.00');
+  const totalClass = visibleExpensesTotal > 0 ? 'green-text' : 'red-text';
   return (
     <div className="page-header">
       <div className="content-container">
         <h2 className="page-header__title">
-          Your {moment().startOf('month').format('MMMM')} cash flow is <span className={totalClass}>{formattedExpensesTotal}</span>. {expensesTotal > 0 && <span> Nice job!</span>}
+          Your {moment().startOf('month').format('MMMM')} cash flow is <span className={totalClass}>{formattedExpensesTotal}</span>. {visibleExpensesTotal > 0 && <span> Nice job!</span>}
         </h2>
       </div>
     </div>
@@ -29,7 +28,7 @@ const mapStateToProps = (state) => {
   });
   
   return {
-    expensesTotal: selectExpensesTotal(visibleExpenses)
+    visibleExpensesTotal: selectExpensesTotal(visibleExpenses)
   };
 };
 

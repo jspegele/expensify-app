@@ -1,20 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
+import ConfirmationModal from './ConfirmationModal';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
+  state = {
+    modalOpen: false
+  };
   onSubmit = (expense) => {
     this.props.startEditExpense(this.props.expense.id, expense);
     this.props.history.push('/');
   };
+  handleAddTags = (expense) => {
+    this.props.startEditExpense(this.props.expense.id, expense);
+  };
   onRemove = () => {
+    console.log('removing');
+    this.setState(() => ({ modalOpen: true }));
+  };
+  handleRemoveExpense = () => {
+    this.handleCloseConfirmationModal();
     this.props.startRemoveExpense({ id: this.props.expense.id });
     this.props.history.push('/');
   };
-  handleAddTags = (expense) => {
-    this.props.startEditExpense(this.props.expense.id, expense);
-  }
+  handleCloseConfirmationModal = () => {
+    this.setState(() => ({ modalOpen: false }));
+  };
   render() {
     return (
       <div>
@@ -27,13 +39,16 @@ export class EditExpensePage extends React.Component {
           <ExpenseForm
             expense={this.props.expense}
             handleAddTags={this.handleAddTags}
+            onRemove={this.onRemove}
             onSubmit={this.onSubmit}
           />
-          <button className="button button--secondary" onClick={this.onRemove}>Remove Transaction</button>
         </div>
+        <ConfirmationModal
+          modalOpen={this.state.modalOpen}
+          handleRemoveExpense={this.handleRemoveExpense}
+          handleCloseConfirmationModal={this.handleCloseConfirmationModal}
+        />
       </div>
-
-
     );
   }
 };

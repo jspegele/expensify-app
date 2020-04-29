@@ -16,3 +16,20 @@
   color: $dark-red;
   margin: 0 0 $m-size 0;
 }
+
+.form__actions {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  @media (min-width: $desktop-breakpoint) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  button {
+    margin-left: $m-size;
+  }
+}

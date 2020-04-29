@@ -169,7 +169,8 @@ class ExpenseForm extends React.Component {
           </div>
           { this.props.expense && <TagList expense={this.props.expense} handleRemoveTag={this.handleRemoveTag} />}
           { this.state.error && <p className="form__error">{this.state.error}</p>}
-          <div>
+          <div className="form__actions">
+            {this.props.expense && <button type="button" className="button button--tertiary" onClick={this.props.onRemove}>Remove</button>}
             <button className={saveButtonClass} type="submit">Save Transaction</button>
           </div>
         </form>
