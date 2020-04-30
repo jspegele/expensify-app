@@ -1,6 +1,7 @@
 # Expensify
 
-[Live Site](https://jspegele-expensify.herokuapp.com/)
+[Live Site](http://expensify.justinspegele.com/)
+
 [Releases](https://github.com/jspegele/expensify-app/releases)
 
 ## Built with
